@@ -8,15 +8,17 @@ namespace KanyeWest
     {
         static void Main(string[] args)
         {
-            string kanyeURL = "https://api.kanye.rest";
-
             var client = new HttpClient();
 
-            var kanyeResponse = client.GetStringAsync(kanyeURL).Result;
+            var quote = new QuoteGenerator(client);
 
-            var kanyeQuote = JObject.Parse(kanyeResponse).GetValue("quote").ToString();
-
-            Console.WriteLine(kanyeQuote);
+          
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"Kanye: {quote.Kanye()}");
+                Console.WriteLine($"Ron: {quote.Ron()}");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~");
+            }     
         }
     }
 }
